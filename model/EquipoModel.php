@@ -14,15 +14,16 @@ class EquipoModel {
         }
     }
 
-    public function getAllEquipos() {
-        $sql = "SELECT e.*, es.nombre_estado, g.nombre AS nombre_grupo, u.nombre
-                FROM Equipos e
-                LEFT JOIN tbEstado es ON e.id_estado = es.id_estado
-                LEFT JOIN GruposInvestigacion g ON e.id_grupo_asignado = g.id_grupo
-                LEFT JOIN Ubicaciones u ON e.id_ubicacion = u.id_ubicacion";
-        $result = $this->conexion->query($sql);
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
+   public function getAllEquipos() {
+    $sql = "SELECT e.*, es.nombre_estado, g.nombre AS nombre_grupo, u.nombre AS nombre_ubicacion, te.nombre_tipo
+            FROM Equipos e
+            LEFT JOIN tbEstado es ON e.id_estado = es.id_estado
+            LEFT JOIN GruposInvestigacion g ON e.id_grupo_asignado = g.id_grupo
+            LEFT JOIN Ubicaciones u ON e.id_ubicacion = u.id_ubicacion
+            LEFT JOIN TipoEquipo te ON e.id_tipoequipo = te.id_tipo";
+    $result = $this->conexion->query($sql);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
     public function getCaracteristicasByEquipo($id_equipo) {
     $sql = "SELECT nombre, valor FROM CaracteristicasEquipo WHERE id_equipo = ?";
     $stmt = $this->conexion->prepare($sql);

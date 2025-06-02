@@ -35,13 +35,13 @@
                     <?php foreach ($equipos as $equipo) : ?>
                         <tr class="hover:bg-gray-50">
                             
-                            <td class="px-4 py-2"><?= htmlspecialchars($equipo['tipo_equipo']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre_tipo']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['codigo_patrimonial']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['codigo_barras']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre_estado']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['fecha_ingreso']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['descripcion']) ?></td>
-                            <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre']) ?></td>
+                            <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre_ubicacion']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre_grupo']) ?></td>
                             <td class="px-4 py-2 flex justify-center gap-2">
                                 <a href="#" 
