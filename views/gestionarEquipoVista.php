@@ -109,9 +109,11 @@
 </div>
 
             <div>
-                <label for="codigo_barras" class="block font-semibold mb-1">Código de Barras</label>
-                <input type="text" id="codigo_barras" name="codigo_barras" class="w-full border border-gray-300 rounded px-3 py-2" />
-            </div>
+    <label for="codigo_barras" class="block font-semibold mb-1">Código de Barras</label>
+    <input type="text" id="codigo_barras" name="codigo_barras" 
+           value="<?= htmlspecialchars($nuevoCodigoBarras) ?>" 
+           readonly class="bg-gray-100 w-full border border-gray-300 rounded px-3 py-2" />
+</div>
 
             <div>
                 <label for="estado" class="block font-semibold mb-1">Estado</label>

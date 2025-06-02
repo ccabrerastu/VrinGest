@@ -25,7 +25,12 @@ class EquipoModel {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
     public function getCaracteristicasByEquipo($id_equipo) {
-    $sql = "SELECT nombre, valor FROM CaracteristicasEquipo WHERE id_equipo = ?";
+    $sql = "
+        SELECT cte.nombre, ce.valor
+        FROM CaracteristicasEquipo ce
+        INNER JOIN CaracteristicaTipoEquipo cte ON ce.id_caracteristica_tipo = cte.id_caracteristica_tipo
+        WHERE ce.id_equipo = ?
+    ";
     $stmt = $this->conexion->prepare($sql);
     if ($stmt === false) {
         // Manejo de error, si quieres
@@ -112,6 +117,33 @@ public function generarNuevoCodigoPatrimonial() {
 
     return 'CP-' . $nuevoNumero;
 }
+public function obtenerUltimoCodigoBarras() {
+    $sql = "SELECT codigo_barras FROM Equipos 
+            WHERE codigo_barras LIKE 'CB-%' 
+            ORDER BY id_equipo DESC LIMIT 1";
+    $resultado = $this->conexion->query($sql);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        return $fila['codigo_barras'];
+    } else {
+        return null;
+    }
+}
+
+public function generarNuevoCodigoBarras() {
+    $ultimo = $this->obtenerUltimoCodigoBarras();
+
+    if ($ultimo) {
+        $numero = intval(substr($ultimo, 3)); // Extrae número sin 'CB-'
+        $nuevoNumero = str_pad($numero + 1, 5, '0', STR_PAD_LEFT);
+    } else {
+        $nuevoNumero = '10001'; // Puedes ajustar esto si quieres iniciar desde 00001
+    }
+
+    return 'CB-' . $nuevoNumero;
+}
+
 
     public function updateEquipo($data) {
         $sql = "UPDATE Equipos SET

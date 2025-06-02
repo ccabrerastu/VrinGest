@@ -17,6 +17,7 @@ class EquipoControlador
         $tiposEquipo = $this->model->getTiposEquipo();
         $estados = $this->model->getEstados();
         $grupos = $this->model->getGrupos();
+        $nuevoCodigoBarras = $this->model->generarNuevoCodigoBarras();
 
         require 'views/gestionarEquipoVista.php';
     }
@@ -51,33 +52,37 @@ class EquipoControlador
         $equipo = $this->model->getEquipoById($id);
         require 'views/equipos/edit.php';
     }
-   public function detalle() {
-    if (isset($_GET['id'])) {
-        $id = intval($_GET['id']);
-        $equipo = $this->model->getEquipoById($id);
-        if ($equipo) {
-            $caracteristicas = $this->model->getCaracteristicasByEquipo($id);
-
-            if (!empty($caracteristicas)) {
-                echo '<h4 class="text-lg font-semibold mb-4 border-b pb-2">Características</h4>';
-                echo '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">';
-                foreach ($caracteristicas as $carac) {
-                    echo '<div class="bg-gray-100 p-4 rounded shadow">';
-                    echo '<p class="font-bold text-indigo-700 mb-1">' . htmlspecialchars($carac['nombre']) . '</p>';
-                    echo '<p class="text-gray-800">' . htmlspecialchars($carac['valor']) . '</p>';
-                    echo '</div>';
-                }
-                echo '</div>';
-            } else {
-                echo '<p class="text-gray-600 italic">No hay características registradas.</p>';
-            }
-        } else {
-            echo '<p class="text-red-600 font-semibold">Equipo no encontrado.</p>';
-        }
-    } else {
+public function detalle() {
+    if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
         echo '<p class="text-red-600 font-semibold">ID inválido.</p>';
+        return;
+    }
+
+    $id = intval($_GET['id']);
+    $equipo = $this->model->getEquipoById($id);
+
+    if (!$equipo) {
+        echo '<p class="text-red-600 font-semibold">Equipo no encontrado.</p>';
+        return;
+    }
+    // Mostrar características
+    $caracteristicas = $this->model->getCaracteristicasByEquipo($id);
+
+    if (!empty($caracteristicas)) {
+        echo '<h4 class="text-lg font-semibold mb-4 border-b pb-2">Características</h4>';
+        echo '<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">';
+        foreach ($caracteristicas as $carac) {
+            echo '<div class="bg-gray-100 p-4 rounded shadow">';
+            echo '<p class="font-bold text-indigo-700 mb-1">' . htmlspecialchars($carac['nombre']) . '</p>';
+            echo '<p class="text-gray-800">' . htmlspecialchars($carac['valor']) . '</p>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo '<p class="text-gray-600 italic">No hay características registradas.</p>';
     }
 }
+
     public function update()
     {
         $data = [
