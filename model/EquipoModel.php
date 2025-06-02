@@ -56,23 +56,18 @@ class EquipoModel {
     }
     public function getTiposEquipo() {
     $sql = "SELECT id_tipo, nombre_tipo FROM TipoEquipo ORDER BY nombre_tipo ASC";
-    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
-
-    // Devuelve un array asociativo con todos los resultados
+    $result = $this->conexion->query($sql); 
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 public function getEstados() {
     $sql = "SELECT id_estado, nombre_estado FROM tbEstado ORDER BY nombre_estado ASC";
-    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
-
-    // Devuelve un array asociativo con todos los resultados
+    $result = $this->conexion->query($sql); 
     return $result->fetch_all(MYSQLI_ASSOC);
 }
-public function getGrupo() {
-    $sql = "SELECT id_estado, nombre_estado FROM tbEstado ORDER BY nombre_estado ASC";
-    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
+public function getGrupos() {
+    $sql = "SELECT id_grupo, nombre FROM GruposInvestigacion ORDER BY nombre ASC";
+    $result = $this->conexion->query($sql); 
 
-    // Devuelve un array asociativo con todos los resultados
     return $result->fetch_all(MYSQLI_ASSOC);
 }
     public function insertEquipo($data) {
@@ -159,13 +154,13 @@ public function generarNuevoCodigoPatrimonial() {
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getEstados() {
+    public function getEstados2() {
         $sql = "SELECT * FROM tbEstado";
         $result = $this->conexion->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getGrupos() {
+    public function getGrupos2() {
         $sql = "SELECT * FROM GruposInvestigacion";
         $result = $this->conexion->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);

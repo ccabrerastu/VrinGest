@@ -88,17 +88,17 @@
         
         <form action="index.php?c=Equipo&a=crear" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="id_tipo_equipo" class="block font-semibold mb-1">Tipo de equipo</label>
-                <select id="id_tipo_equipo" name="id_tipo_equipo" required
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600">
-                <option value="" disabled selected>Seleccione un tipo</option>
-                <?php foreach ($tiposEquipo as $tipo): ?>
-                <option value="<?= htmlspecialchars($tipo['id_tipo']) ?>">
+    <label for="id_tipo" class="block font-semibold mb-1">Tipo de equipo</label>
+    <select id="id_tipo" name="id_tipo" required
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+        <option value="" disabled selected>Seleccione un tipo</option>
+        <?php foreach ($tiposEquipo as $tipo): ?>
+            <option value="<?= htmlspecialchars($tipo['id_tipo']) ?>">
                 <?= htmlspecialchars($tipo['nombre_tipo']) ?>
-                 </option>
-                <?php endforeach; ?>
-                </select>
-            </div>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
 
             <div>
     <label for="codigo_patrimonial" class="block font-semibold mb-1">Código Patrimonial</label>
@@ -131,7 +131,7 @@
                 <label for="grupo" class="block font-semibold mb-1">Grupo</label>
                 <select id="grupo" name="grupo" required class="w-full border border-gray-300 rounded px-3 py-2">
                     <?php foreach ($grupos as $grupo): ?>
-                        <option value="<?= $grupo['id_grupo'] ?>"><?= htmlspecialchars($grupo['nombre_grupo']) ?></option>
+                        <option value="<?= $grupo['id_grupo'] ?>"><?= htmlspecialchars($grupo['nombre']) ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
