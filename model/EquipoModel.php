@@ -15,7 +15,7 @@ class EquipoModel {
     }
 
     public function getAllEquipos() {
-        $sql = "SELECT e.*, es.nombre_estado, g.nombre AS nombre_grupo, u.nombre_ubicacion
+        $sql = "SELECT e.*, es.nombre_estado, g.nombre AS nombre_grupo, u.nombre
                 FROM Equipos e
                 LEFT JOIN tbEstado es ON e.id_estado = es.id_estado
                 LEFT JOIN GruposInvestigacion g ON e.id_grupo_asignado = g.id_grupo

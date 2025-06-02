@@ -1,5 +1,5 @@
 <?php
-require_once 'models/EquipoModel.php';
+require_once 'model/EquipoModel.php';
 
 class EquipoControlador
 {
