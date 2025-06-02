@@ -68,6 +68,32 @@ class EquipoModel {
         );
         $stmt->execute();
     }
+    public function obtenerUltimoCodigoPatrimonial() {
+    $sql = "SELECT codigo_patrimonial FROM Equipos 
+            WHERE codigo_patrimonial LIKE 'CP-%' 
+            ORDER BY id_equipo DESC LIMIT 1";
+    $resultado = $this->conexion->query($sql);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        return $fila['codigo_patrimonial'];
+    } else {
+        return null;
+    }
+}
+
+public function generarNuevoCodigoPatrimonial() {
+    $ultimo = $this->obtenerUltimoCodigoPatrimonial();
+
+    if ($ultimo) {
+        $numero = intval(substr($ultimo, 3));
+        $nuevoNumero = str_pad($numero + 1, 5, '0', STR_PAD_LEFT);
+    } else {
+        $nuevoNumero = '00001';
+    }
+
+    return 'CP-' . $nuevoNumero;
+}
 
     public function updateEquipo($data) {
         $sql = "UPDATE Equipos SET

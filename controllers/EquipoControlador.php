@@ -13,6 +13,7 @@ class EquipoControlador
     public function index()
     {
         $equipos = $this->model->getAllEquipos();
+        $nuevoCodigoPatrimonial = $this->model->generarNuevoCodigoPatrimonial();
         require 'views/gestionarEquipoVista.php';
     }
 
@@ -87,6 +88,10 @@ class EquipoControlador
         $this->model->updateEquipo($data);
         header("Location: index.php?c=Equipo&a=index");
     }
+    public function formularioCrear() {
+    $nuevoCodigoPatrimonial = $this->model->generarNuevoCodigoPatrimonial();
+    require 'views/gestionarEquipoVista.php';
+}
 
     public function delete()
     {

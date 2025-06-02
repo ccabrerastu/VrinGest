@@ -93,11 +93,12 @@
             </div>
 
             <div>
-                <label for="codigo_patrimonial" class="block font-semibold mb-1">Código Patrimonial</label>
-                <input type="text" id="codigo_patrimonial" name="codigo_patrimonial" 
-                       value="<?= htmlspecialchars($nuevoCodigoPatrimonial) ?>" 
-                       readonly class="bg-gray-100 w-full border border-gray-300 rounded px-3 py-2" />
-            </div>
+    <label for="codigo_patrimonial" class="block font-semibold mb-1">Código Patrimonial</label>
+    <input type="text" id="codigo_patrimonial" name="codigo_patrimonial" 
+           value="<?= htmlspecialchars($nuevoCodigoPatrimonial ?? '') ?>" 
+           readonly 
+           class="bg-gray-100 w-full border border-gray-300 rounded px-3 py-2" />
+</div>
 
             <div>
                 <label for="codigo_barras" class="block font-semibold mb-1">Código de Barras</label>
@@ -147,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const contenido = document.getElementById('contenidoDetalle');
     const cerrarModalBtn = document.getElementById('cerrarModal');
 
-    // Abrir modal y cargar detalle
     document.querySelectorAll('.btn-ver').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -167,12 +167,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Cerrar modal
+
     cerrarModalBtn.addEventListener('click', () => {
         modal.classList.add('hidden');
     });
 
-    // Cerrar modal si se hace clic fuera del contenido
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.add('hidden');
@@ -182,7 +181,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Modal Detalle Equipo (ya existente)
     const modalDetalle = document.getElementById('modalDetalleEquipo');
     const contenidoDetalle = document.getElementById('contenidoDetalle');
     const cerrarModalDetalle = document.getElementById('cerrarModal');
@@ -215,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Modal Agregar Equipo
     const modalAgregar = document.getElementById('modalAgregarEquipo');
     const abrirAgregarBtn = document.getElementById('openAgregarEquipoModal');
     const cerrarAgregarBtn = document.getElementById('cerrarAgregarModal');
