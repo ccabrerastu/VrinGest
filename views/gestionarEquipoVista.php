@@ -39,6 +39,11 @@
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre']) ?></td>
                             <td class="px-4 py-2"><?= htmlspecialchars($equipo['nombre_grupo']) ?></td>
                             <td class="px-4 py-2 flex justify-center gap-2">
+                                <a href="#" 
+   data-id="<?= $equipo['id_equipo'] ?>" 
+   class="btn-ver bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded mr-1">
+   👁️
+</a>
                                 <a href="index.php?c=Equipo&a=editar&id=<?= $equipo['id_equipo'] ?>" class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-3 py-1 rounded">
                                     ✏️
                                 </a>
@@ -57,5 +62,52 @@
         </table>
     </div>
 </main>
+<div id="modalDetalleEquipo" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded-xl shadow-lg p-8 max-w-xl w-full relative">
+    <button id="cerrarModal" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 font-bold text-2xl">&times;</button>
+    <h2 class="text-2xl font-extrabold mb-6 text-indigo-700">Detalle del Equipo</h2>
+    <div id="contenidoDetalle">
+        <!-- Aquí se cargará el detalle via AJAX -->
+    </div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('modalDetalleEquipo');
+    const contenido = document.getElementById('contenidoDetalle');
+    const cerrarModalBtn = document.getElementById('cerrarModal');
 
+    // Abrir modal y cargar detalle
+    document.querySelectorAll('.btn-ver').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const idEquipo = this.getAttribute('data-id');
+            modal.classList.remove('hidden');
+            contenido.innerHTML = '<p>Cargando...</p>';
+
+            // Petición AJAX
+            fetch(`index.php?c=Equipo&a=detalle&id=${idEquipo}`)
+                .then(response => response.text())
+                .then(data => {
+                    contenido.innerHTML = data;
+                })
+                .catch(err => {
+                    contenido.innerHTML = '<p>Error al cargar el detalle.</p>';
+                });
+        });
+    });
+
+    // Cerrar modal
+    cerrarModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    // Cerrar modal si se hace clic fuera del contenido
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.add('hidden');
+        }
+    });
+});
+</script>
 <?php require 'views/partials/footer.php'; ?>

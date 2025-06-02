@@ -23,6 +23,25 @@ class EquipoModel {
         $result = $this->conexion->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+    public function getCaracteristicasByEquipo($id_equipo) {
+    $sql = "SELECT nombre, valor FROM CaracteristicasEquipo WHERE id_equipo = ?";
+    $stmt = $this->conexion->prepare($sql);
+    if ($stmt === false) {
+        // Manejo de error, si quieres
+        return [];
+    }
+    $stmt->bind_param("i", $id_equipo);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $caracteristicas = [];
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $caracteristicas[] = $row;
+        }
+    }
+    $stmt->close();
+    return $caracteristicas;
+}
 
     public function getEquipoById($id) {
         $sql = "SELECT * FROM Equipos WHERE id_equipo = ?";
