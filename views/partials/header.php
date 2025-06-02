@@ -131,16 +131,17 @@ $apellido = $_SESSION['apellido'] ?? 'Apellido';
 </head>
 <body class="bg-gray-50">
 
-    <aside id="sidebar" class="w-64 bg-blue-600 text-white min-h-screen p-4 space-y-4 transition-transform duration-300 fixed left-0 top-0 transform -translate-x-full z-30">
+<aside id="sidebar" class="w-64 bg-blue-600 text-white min-h-screen p-4 space-y-4 fixed left-0 top-0 z-30">
     <h4 class="text-xl font-bold mb-4">Menú</h4>
-    <a href="<?php echo $baseUrl; ?>index.php?c=Reactivo&a=index" >Gestionar Reactivo</a>
-    <a href="<?php echo $baseUrl; ?>index.php?c=Material&a=index" >Gestionar Materiales</a>
-    <a href="/views/clasesRegistradasVista.php">Registro de Clases</a>
-    <a href="/index.php?c=Usuario&a=gestionarUsuarios" >Gestionar Usuario</a>
-    <a href="<?php echo $baseUrl; ?>index.php?c=Solicitud&a=index2" >Solicitudes</a>
-    <a href="/views/reportesVista.php" >Reportes</a>
-    <a href="/index.php?c=Login&a=logout" >Cerrar Sesión</a>
-</aside> 
+    <a href="/index.php?c=Equipo&a=index">Gestionar Equipos</a>
+    <a href="/index.php?c=Prestamo&a=index">Préstamos de Equipos</a>
+    <a href="/index.php?c=GrupoInvestigacion&a=index">Grupos de Investigación</a>
+    <a href="/index.php?c=CompraAsignacion&a=index">Compra y Asignación</a>
+    <a href="/index.php?c=Presupuesto&a=index">Presupuestos y Proyectos</a>
+    <a href="/index.php?c=Reporte&a=index">Reportes y Estadísticas</a>
+    <a href="/index.php?c=Configuracion&a=index">Configuración</a>
+    <a href="/index.php?c=Login&a=logout">Cerrar Sesión</a>
+</aside>
 
     <header id="header" class="bg-blue-100 p-4 shadow flex items-center justify-between fixed top-0 left-0 w-full z-20 transition-all duration-300">
     <div class="flex items-center space-x-2">
