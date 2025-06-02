@@ -88,8 +88,16 @@
         
         <form action="index.php?c=Equipo&a=crear" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <label for="tipo_equipo" class="block font-semibold mb-1">Tipo de equipo</label>
-                <input type="text" id="tipo_equipo" name="tipo_equipo" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600" />
+                <label for="id_tipo_equipo" class="block font-semibold mb-1">Tipo de equipo</label>
+                <select id="id_tipo_equipo" name="id_tipo_equipo" required
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                <option value="" disabled selected>Seleccione un tipo</option>
+                <?php foreach ($tiposEquipo as $tipo): ?>
+                <option value="<?= htmlspecialchars($tipo['id_tipo']) ?>">
+                <?= htmlspecialchars($tipo['nombre_tipo']) ?>
+                 </option>
+                <?php endforeach; ?>
+                </select>
             </div>
 
             <div>

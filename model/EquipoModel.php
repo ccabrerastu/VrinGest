@@ -44,6 +44,8 @@ class EquipoModel {
     return $caracteristicas;
 }
 
+
+
     public function getEquipoById($id) {
         $sql = "SELECT * FROM Equipos WHERE id_equipo = ?";
         $stmt = $this->conexion->prepare($sql);
@@ -52,7 +54,27 @@ class EquipoModel {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
+    public function getTiposEquipo() {
+    $sql = "SELECT id_tipo, nombre_tipo FROM TipoEquipo ORDER BY nombre_tipo ASC";
+    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
 
+    // Devuelve un array asociativo con todos los resultados
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+public function getEstados() {
+    $sql = "SELECT id_estado, nombre_estado FROM tbEstado ORDER BY nombre_estado ASC";
+    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
+
+    // Devuelve un array asociativo con todos los resultados
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+public function getGrupo() {
+    $sql = "SELECT id_estado, nombre_estado FROM tbEstado ORDER BY nombre_estado ASC";
+    $result = $this->conexion->query($sql); // Ejecuta la consulta con MySQLi
+
+    // Devuelve un array asociativo con todos los resultados
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
     public function insertEquipo($data) {
         $sql = "INSERT INTO Equipos (tipo_equipo, codigo_patrimonial, codigo_barras, id_estado, fecha_ingreso, descripcion, id_ubicacion, id_grupo_asignado)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

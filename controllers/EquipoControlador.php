@@ -14,6 +14,7 @@ class EquipoControlador
     {
         $equipos = $this->model->getAllEquipos();
         $nuevoCodigoPatrimonial = $this->model->generarNuevoCodigoPatrimonial();
+        $tiposEquipo = $this->model->getTiposEquipo();
         require 'views/gestionarEquipoVista.php';
     }
 
