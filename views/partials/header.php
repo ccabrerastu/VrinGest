@@ -50,7 +50,7 @@ $apellido = $_SESSION['apellido'] ?? 'Apellido';
         text-decoration: none;
         color: white;
         font-weight: 500;
-        transition: background-color 0.1s ease;
+        transition: background-color 0.3s ease;
         box-shadow: inset 0 0 0 0 transparent;
     }
     #sidebar a:hover {
@@ -82,7 +82,7 @@ $apellido = $_SESSION['apellido'] ?? 'Apellido';
         color: white;
         padding: 0.5rem;
         border-radius: 0.375rem;
-        transition: background-color 0.1s ease;
+        transition: background-color 0.3s ease;
     }
     #header button#hamburger-btn:hover {
         background-color: #60A5FA; /* Azul hover */
@@ -131,7 +131,7 @@ $apellido = $_SESSION['apellido'] ?? 'Apellido';
 </head>
 <body class="bg-gray-50">
 
-<aside id="sidebar" class="w-64 bg-blue-600 text-white min-h-screen p-4 space-y-4 fixed left-0 top-0 z-30">
+<aside id="sidebar" class="w-64 bg-blue-600 text-white min-h-screen p-4 space-y-4 fixed left-0 top-0 z-30 transform transition-transform duration-300">
     <h4 class="text-xl font-bold mb-4">Menú</h4>
     <a href="/index.php?c=Equipo&a=index">Gestionar Equipos</a>
     <a href="/index.php?c=Prestamo&a=index">Préstamos de Equipos</a>
